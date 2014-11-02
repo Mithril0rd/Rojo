@@ -15,7 +15,7 @@ int get(int x, int k) {
 
 int solve() {
 	int sum = 0, last = 0, id = 1;
-	for (int i = 0; i <= 32; ++i) {
+	for (int i = 0; i < 32; ++i) {
 		last = sum;
 		sum += get(r + 1, i) - get(l, i);
 		if (sum >= K) {id = i; break; }
@@ -43,15 +43,9 @@ int main() {
 	scanf("%d", &T);
 	while (T-- > 0) {
 		scanf("%d%d%d", &l, &r, &K);
-		if (l >= 0) {
-			if (l == 0) ++l, --K;
-			int ans = solve();
-			printf("%d\n", ans);
-		} else {
-			if (r == 0) --r, --K;
-			int ans = solve() - (1ll << 32);
-			printf("%d\n", ans);
-		}
+		if (l == 0) ++l, --K;
+		if (r == 0) --r, --K;
+		printf("%d\n", solve());
 	}
 	return 0;
 }
